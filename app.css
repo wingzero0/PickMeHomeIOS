@@ -1,3 +1,12 @@
+.screenShot{
+  margin:0px;
+  padding:0px 0.5em 0px 0px;
+  float:left;
+  border:none;
+  width: 135px;
+  height: 266px;
+}
+
 .ui-icon-phone {
   background-image: url(images/call.png);
   background-repeat: no-repeat;

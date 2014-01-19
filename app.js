@@ -121,26 +121,21 @@
 		}
 	}
 	var UpdateManifest = function(){
-		// var online = window.navigator.onLine;
 		console.log("before check");
-		if (window.navigator && window.navigator.onLine){
+		if (window.navigator && window.navigator.onLine && window.applicationCache){
 			console.log("start update");
-			window.applicationCache.update();
+			// window.applicationCache.update(); // bug, can't update in first time
 			console.log("end update");
 		}
 		cache = window.applicationCache;
 		cache.addEventListener('error', cacheErrorListener, false);
-		// function cacheUpdatereadyListener (){
-		//     window.applicationCache.update();
-		//     window.applicationCache.swapCache();
-		// }
+
 	    function cacheErrorListener(e) {
-	        // alert('site not availble offline')
 	        console.log(e);
 	    }
 	}
 	var InitSetting = function(){
-		UpdateManifest();
+		// UpdateManifest();
 		InitGeneralEvent();
 
 		// init view display
