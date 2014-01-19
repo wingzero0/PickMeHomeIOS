@@ -1,0 +1,21 @@
+CACHE MANIFEST
+#rev yayau
+CACHE:
+vendors/jquery-2.0.3.js
+vendors/jquery.mobile-1.3.2.css
+vendors/jquery.mobile-1.3.2.js
+vendors/swipe.js
+vendors/images/ajax-loader.gif
+vendors/images/icons-18-black.png
+vendors/images/icons-18-white.png
+vendors/images/icons-36-black.png
+vendors/images/icons-36-white.png
+#NETWORK:
+app.css
+app.js
+#index.html
+images/call.png
+images/icon.png
+images/resize/tutorial01.png
+images/resize/tutorial02.png
+images/resize/tutorial03.png
