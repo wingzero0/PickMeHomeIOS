@@ -1,7 +1,5 @@
 .screenShot{
-  margin:0px;
-  padding:0px 0.5em 0px 0px;
-  float:left;
+  padding:0 0.1em 0 0;
   border:none;
   width: 135px;
   height: 266px;
@@ -49,7 +47,7 @@
   padding: 1.5em 0em 1.5em 64px;
 }
 
-/* SwipeJS */
+
 .swipe {
   overflow: hidden;
   visibility: hidden;

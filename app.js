@@ -31,7 +31,7 @@
 	}
 
 	var SetLaunched = function(){
-		localStorage['firstLaunch'] = 1;
+		localStorage['firstLaunch'] = 100;
 	}
 
 	app.model.InitPhoneNumber = InitPhoneNumber;
@@ -64,34 +64,6 @@
 		// phoneLink.html(app.view.callDescription + " : "+ phoneNumber);
 	}
 
-	var InitView = function(){
-		// show the welcome page
-		$(document).bind('pageshow', function(event, ui) {
-		  if ($(event.target).attr('id') === 'welcome') {
-		    window.mySwipe = Swipe(document.getElementById('slider'), {
-				speed: 1000,
-				auto: 4000,
-				continuous: false
-			});
-			$("#welcome").on("pagebeforehide", function(e){
-				window.mySwipe.kill();
-			});
-			app.model.SetLaunched();
-		  }
-		});
-		
-
-		var closeWelcomeBtn = $('#close-welcome-btn');
-
-		closeWelcomeBtn.click(function(e){
-			e.preventDefault();
-			$.mobile.changePage('#root', {reverse: true});
-		});
-
-		$.mobile.defaultPageTransition = 'slide';
-
-		app.view.callDescription = $('#callDes').text();
-	}
 	var IsIOSFullScreen = function(){
 		if ("standalone" in window.navigator) { // if define and set
 			if (window.navigator.standalone){
@@ -101,10 +73,67 @@
 			return false;
 		}
 	}
+
+	var welcomeSwipe = function(idSuffix){
+		window.mySwipe = Swipe(document.getElementById('slider' + idSuffix), {
+			speed: 1000,
+			auto: 4000,
+			continuous: false
+		});
+		$("#welcome" + idSuffix ).on("pagebeforehide", function(e){
+			window.mySwipe.kill();
+		});
+
+		var closeWelcomeBtn = $('#close-welcome-btn' + idSuffix);
+
+		closeWelcomeBtn.click(function(e){
+			e.preventDefault();
+			$.mobile.changePage('#main', {reverse: true});
+		});
+	}
+
+	var InitView = function(){
+		// show the welcome page
+		// if ((typeof window.mySwipe != 'undefined') && window.mySwipe){
+		// 	// kill web app cache. I don't know why it be there.
+		// 	window.mySwipe.kill();
+		// 	alert("kill at begin");
+		// }else{
+		// 	alert("no special");
+		// }
+		
+		$(document).bind('pageshow', function(event, ui) {
+			if ($(event.target).attr('id') === 'welcomeWeb') {
+				// alert("show Web");
+				welcomeSwipe("Web");
+			}else if($(event.target).attr('id') === 'welcomeApp'){
+				// alert("show App");
+				welcomeSwipe("App")
+			}
+		});
+
+		$.mobile.defaultPageTransition = 'slide';
+
+		// app.view.callDescription = $('#callDes').text();
+
+		// if it is web page from safari
+		var readMe = $("#readMe");
+		readMe.bind('click', function(e){
+			e.preventDefault();
+			// if (!IsIOSFullScreen()){
+			// 	$.mobile.changePage('#welcomeWeb');
+			// }else{
+				$.mobile.changePage('#welcomeApp');
+			// }
+		});
+		app.view.readMe = readMe;
+	}
 	app.view.UpdatePhoneLink = UpdatePhoneLink;
 	app.view.DisplayInitButton = DisplayInitButton;
 	app.view.InitView = InitView;
 	app.view.IsIOSFullScreen = IsIOSFullScreen;
+	app.view.welcomeSwipe = welcomeSwipe;
+	// app.view.readMe = readMe;
 }).call(this, jQuery);
 
 // controller
@@ -140,26 +169,31 @@
 
 		// init view display
 		app.view.InitView();
-		var retFlag = app.model.InitPhoneNumber();
-		app.view.DisplayInitButton(retFlag);
-		app.view.UpdatePhoneLink(app.model.emergencyCall.val());	
+		
 
-
-		// if it is a new installed program, set time out to display 
-		if (app.model.IsFirstLaunch() && !app.view.IsIOSFullScreen()){
-			setTimeout(function(){
-			  $.mobile.changePage('#welcome');
-			}, 500);
+		// if it is web page from safari
+		if (!app.view.IsIOSFullScreen()){
+			app.view.welcomeSwipe("Web");
+		}else if (app.model.IsFirstLaunch() && app.view.IsIOSFullScreen()){
+			app.model.SetLaunched();
+			app.view.readMe.click();
+			var retFlag = app.model.InitPhoneNumber();
+			app.view.DisplayInitButton(retFlag);
+			app.view.UpdatePhoneLink(app.model.emergencyCall.val());
+		}else{
+			$.mobile.changePage('#main');
+			var retFlag = app.model.InitPhoneNumber();
+			app.view.DisplayInitButton(retFlag);
+			app.view.UpdatePhoneLink(app.model.emergencyCall.val());	
 		}
 
 		// bind event for user input
 		var backButton = $('#backButton');
 		var telInput = $('#emergencyCall');
 
-		backButton.click(function(e){
+		backButton.bind('click',function(e){
 			e.preventDefault();
-			console.log("get back click");
-			$.mobile.changePage('#root', {reverse: true});
+			$.mobile.changePage('#main', {reverse: true});
 		});
 
 		app.model.emergencyCall.keydown(function(e){

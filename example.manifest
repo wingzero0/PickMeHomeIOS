@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#rev v.010119
+#rev v.010120 zg
 CACHE:
 vendors/jquery-2.0.3.js
 vendors/jquery.mobile-1.3.2.css
@@ -10,7 +10,6 @@ vendors/images/icons-18-black.png
 vendors/images/icons-18-white.png
 vendors/images/icons-36-black.png
 vendors/images/icons-36-white.png
-#NETWORK:
 app.css
 app.js
 #index.html

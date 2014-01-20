@@ -13,13 +13,38 @@
   </head>
   <body>
     <div data-role='page' id='root'>
+      <div data-role='content'>
+        <div id='sliderWeb' class='swipe'>
+          <div class='swipe-wrap'>
+            <div>
+              <p>這是一個讓你在吃飽喝醉之後，<br/>不會睡倒在街頭的App。</p>
+              <img src="images/resize/tutorial01.png" alt=""></div>
+            <div>
+              <p>為了讓你醉了也找得這個App，<br/>請按照指示把App放到主畫面。<br/>(Add to Home Screen)</p>
+              <img src="images/resize/screen01.png" alt="" class="screenShot">
+              <img src="images/resize/screen02.png" alt="" class="screenShot">
+            </div>
+            <div>
+              <p>按加入之後，再把App放到常用欄位內，<br/>方便你醉了也能找得回來！</p>
+              <img src="images/resize/screen03.png" alt="" class="screenShot" >
+              <img src="images/resize/screen04.png" alt="" class="screenShot" >
+            </div>
+            <div>
+              <p>快來加到主畫面吧<br/>(Add to Home Screen)</p>
+              <p>加到主畫面之後，還可以離線執行喔！</p>
+              <a id='close-welcome-btnWeb' data-role='button' data-rel='back' class='ui-btn-left hidden'>完成</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-role='page' id='main'>
       <div data-role='header' class='bigFont'>
         <h1>醉後麻煩你</h1>
-        <a class='ui-btn-left' data-role='button' href='#welcome'>說明</a>
+        <a class='ui-btn-left' data-role='button' id="readMe">說明</a>
         <a class='ui-btn-right' data-role='button' href='#setting'>設定</a>
       </div>
       <div data-role='content' class='bigFont pageCenter'>
-        <!-- content here -->
         <div id='phoneNumberContainer'>
           <a data-role='button' id='callButton' class='phoneLink ui-icon-phone' href='tel:+xxxxxxxxx'>Call 12345678</a>
         </div>
@@ -32,34 +57,27 @@
       <div data-role='header' class='bigFont'>
         <h1>設定</h1>
         <a id='backButton' data-icon='arrow-l' data-rel='back'>返回</a>
-        <!-- <a class='ui-btn-right' data-role='button' href='#welcome'>Toturial</a> -->
       </div>
       <div data-role='content' class='pageCenter'>
-        <div><p class='bigFont'>請填入那個會在你醉死了，但還願意載你回家的好友的電話</p>
+        <div><p class='bigFont'>請填入那個會在你醉死了，但還願意載你回家的好友的電話！</p>
           <input type='tel' id='emergencyCall' name='emergencyCall'>
         </div>
-        <!-- content here -->
       </div>
     </div>
-    <div data-role='page' id='welcome'>
+    
+    <div data-role='page' id='welcomeApp'>
       <div data-role='content'>
-        <div id='slider' class='swipe'>
+        <div id='sliderApp' class='swipe'>
           <div class='swipe-wrap'>
-            <div><p>這是一個讓你在吃飽喝醉之後，不會睡倒在街頭的App</p><img src="images/resize/tutorial01.png" alt=""></div>
-            <div><p>使用方式很簡單，在你出門之前，先設定好你的緊急聯絡人電話</p><img src="images/resize/tutorial02.png" alt=""></div>
+            <div><p>這是一個讓你在吃飽喝醉之後，<br/>不會睡倒在街頭的App。</p><img src="images/resize/tutorial01.png" alt=""></div>
+            <div><p>使用方式很簡單，在你出門之前，<br/>先設定好你的緊急聯絡人電話。</p><img src="images/resize/tutorial02.png" alt=""></div>
             <div>
-              <p>記得把App加到書簽，再放到主畫面(Add to Home Screen)</p>
-              <img src="images/resize/screen01.png" alt="" class="screenShot">
-              <img src="images/resize/screen02.png" alt="" class="screenShot">
-            </div>
-            <div>
-              <p>按加入之後，再把App放到常用欄位內，方便你醉了也能找得回來！</p>
-              <img src="images/resize/screen03.png" alt="" class="screenShot" >
+              <p>設定完以後，記得把App放到常用欄位內，方便你醉了也能找得回來！</p>
               <img src="images/resize/screen04.png" alt="" class="screenShot" >
             </div>
             <div>
               <p>快來設定吧！</p>
-              <a id='close-welcome-btn' data-role='button' data-rel='back' class='ui-btn-left'>完成</a>
+              <a id='close-welcome-btnApp' data-role='button' data-rel='back' class='ui-btn-left'>完成</a>
             </div>
           </div>
         </div>
